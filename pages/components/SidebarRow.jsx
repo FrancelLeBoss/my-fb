@@ -9,6 +9,7 @@ const SidebarRow = ({ src, Icon, title }) => {
                 src={src}
                 width={30}
                 height={30}
+                alt=""
             />)
             }
             {Icon && (<Icon className="h-8 w-8 text-blue-500" />)}

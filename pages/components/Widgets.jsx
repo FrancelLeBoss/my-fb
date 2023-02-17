@@ -38,7 +38,7 @@ const Widgets = () => {
             </div>
             <div className='flex flex-col space-y-2 relative'>
                 {contacts.map(contact => {
-                    return (<Contact src={contact.profile} name={contact.name} />)
+                    return (<Contact key={contact.profile} src={contact.profile} name={contact.name} />)
                 })}
             </div>
         </div>

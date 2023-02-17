@@ -70,7 +70,8 @@ const InputBox = () => {
             <div className='flex gap-2 border-b'>
                 <form className='flex-1 flex gap-1 text-sm font-semibold text-blue-500 pb-3 pt-2
                       border-b items-center'>
-                    <Image src={session.user.image} className="rounded-full" width={40} height={40} alt={session.user.name} />
+                    <Image src={session.user.image} className="rounded-full"
+                        width={40} height={40} alt={session.user.name} />
                     <input type="text" className='items-center flex-grow bg-gray-100 outline-none px-2 py-3 
                     placeholder-gray-500 rounded-3xl' ref={inputRef}
                         placeholder={`What's up, ${session.user.name} ?`} />
