@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .icon {
+        @apply hidden xl:inline-flex p-2 bg-gray-200 rounded-full h-10 w-10 text-gray-700 cursor-pointer hover:bg-gray-300
+    }
+}
+/* Firefox
+* {
+    scrollbar-width: 7px;
+    scrollbar-color: transparent;
+  }
+  
+  /* Chrome, Edge, and Safari */
+  /* *::-webkit-scrollbar {
+    width: 7px;
+  } */
+  
+  /* *::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 5px;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 14px;
+    border: 1px solid transparent;
+  } */ 
