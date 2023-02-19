@@ -23,7 +23,7 @@ const Posts = ({ posts }) => {
                         />
                     })
                     :
-                    posts.map(post => {
+                    posts?.map(post => {
                         return <Post
                             key={post.id}
                             name={post.name}

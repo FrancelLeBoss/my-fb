@@ -37,8 +37,8 @@ const Widgets = () => {
                 <div className='hidden md:inline-flex items-center space-x-2'><VideoCameraIcon className='h-6 w-6 cursor-pointer hover:p-1 hover:bg-gray-200 hover:rounded-full' /><MagnifyingGlassIcon className='h-6 w-6 cursor-pointer hover:p-1 hover:bg-gray-200 hover:rounded-full' /><EllipsisHorizontalIcon className='h-6 w-6 cursor-pointer hover:p-1 hover:rounded-full hover:bg-gray-200' /></div>
             </div>
             <div className='flex flex-col space-y-2 relative'>
-                {contacts.map(contact => {
-                    return (<Contact key={contact.profile} src={contact.profile} name={contact.name} />)
+                {contacts.map((contact, i) => {
+                    return (<Contact key={i} src={contact.profile} name={contact.name} />)
                 })}
             </div>
         </div>

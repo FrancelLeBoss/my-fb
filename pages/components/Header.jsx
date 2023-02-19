@@ -2,7 +2,6 @@ import React from 'react'
 import Image from "next/image"
 import { BellIcon, ChatBubbleOvalLeftEllipsisIcon, ChevronDownIcon, HomeIcon, UserGroupIcon, TableCellsIcon } from '@heroicons/react/24/solid'
 import { MagnifyingGlassIcon, FlagIcon, PlayIcon, ShoppingCartIcon } from '@heroicons/react/24/outline'
-import HeaderIcon from './HeaderIcon'
 import { signOut } from 'next-auth/react'
 
 const Header = ({ session }) => {
@@ -23,22 +22,47 @@ const Header = ({ session }) => {
             {/* Center */}
             <div className='flex justify-center flex-grow'>
                 <div className=' flex text-gray-600 space-x-2 md:space-x-2'>
-                    <HeaderIcon Icon={HomeIcon} active={true} />
-                    <HeaderIcon Icon={FlagIcon} />
-                    <HeaderIcon Icon={PlayIcon} />
-                    <HeaderIcon Icon={ShoppingCartIcon} />
-                    <HeaderIcon Icon={UserGroupIcon} />
+                    <div className='flex items-center rounded-xl cursor-pointer 
+                    md:hover:bg-slate-100 md:px-6 sm:h-14 active:border-b-2 
+                    active:border-blue-500 group'>
+                        <HomeIcon className="text-blue-500 h-5 group-hover:text-blue-500 text-center sm:h-7 mx-auto" />
+                    </div>
+                    <div className='flex items-center rounded-xl cursor-pointer 
+                        md:hover:bg-slate-100 md:px-6 sm:h-14 active:border-b-2 
+                        active:border-blue-500 group'>
+                        <FlagIcon className="gray-blue-500 h-5 group-hover:text-blue-500 text-center sm:h-7 mx-auto" />
+                    </div>
+                    <div className='flex items-center rounded-xl cursor-pointer 
+                        md:hover:bg-slate-100 md:px-6 sm:h-14 active:border-b-2 
+                        active:border-blue-500 group'>
+                        <PlayIcon className="gray-blue-500 h-5 group-hover:text-blue-500 text-center sm:h-7 mx-auto" />
+                    </div>
+                    <div className='flex items-center rounded-xl cursor-pointer 
+                        md:hover:bg-slate-100 md:px-6 sm:h-14 active:border-b-2 
+                        active:border-blue-500 group'>
+                        <ShoppingCartIcon className="gray-blue-500 h-5 group-hover:text-blue-500 text-center sm:h-7 mx-auto" />
+                    </div>
+                    <div className='flex items-center rounded-xl cursor-pointer 
+                        md:hover:bg-slate-100 md:px-6 sm:h-14 active:border-b-2 
+                        active:border-blue-500 group'>
+                        <UserGroupIcon className="gray-blue-500 h-5 group-hover:text-blue-500 text-center sm:h-7 mx-auto" />
+                    </div>
+                    {/* <HeaderIcon Icon={HomeIcon} active={true} />
+                    <HeaderIcon Icon={FlagIcon} active={false} />
+                    <HeaderIcon Icon={PlayIcon} active={false} />
+                    <HeaderIcon Icon={ShoppingCartIcon} active={false} />
+                    <HeaderIcon Icon={UserGroupIcon} active={false} /> */}
                 </div>
             </div>
             {/* Right */}
             <div className='flex items-center sm:space-x-2 justify-end'>
                 {/* profile pic*/}
-                <Image src={session.user.image}
+                <Image src={session?.user?.image}
                     onClick={signOut}
                     className="cursor-pointer rounded-full"
                     width={40}
-                    height={40} alt={session.user.name} />
-                <p className='whitespace-nowrap font-semibold pr-3 hidden md:inline-flex'>{session.user.name}</p>
+                    height={40} alt={session?.user?.name} />
+                <p className='whitespace-nowrap font-semibold pr-3 hidden md:inline-flex'>{session?.user?.name}</p>
                 <TableCellsIcon className="icon" />
                 <ChatBubbleOvalLeftEllipsisIcon className="icon" />
                 <BellIcon className="icon" />

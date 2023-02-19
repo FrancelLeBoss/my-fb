@@ -7,7 +7,7 @@ const Post = ({ name, message, email, timestamp, image, postImage }) => {
     return (
         <div className='flex flex-col gap-2 rounded-t-xl bg-white my-2 shadow'>
             <div className='flex space-x-2 items-center p-3'>
-                <div><img src={image} width={40} height={40} alt="" className='rounded-full' /></div>
+                <div><Image src={image} width={40} height={40} alt="" className='rounded-full' /></div>
                 <div className='flex flex-col'>
                     <p className='text-sm font-bold '>{name}</p>
                     <p className='text-xs font-medium text-gray-500'>
