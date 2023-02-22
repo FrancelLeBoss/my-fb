@@ -3,12 +3,12 @@ import 'firebase/compat/storage'
 import 'firebase/compat/firestore';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAFi4OyzgCL0lBbwl565iqd5ouu5sik51I",
-    authDomain: "fb-clone-5735a.firebaseapp.com",
-    projectId: "fb-clone-5735a",
-    storageBucket: "fb-clone-5735a.appspot.com",
-    messagingSenderId: "626649419222",
-    appId: "1:626649419222:web:6508a9f579ebc9f4272877"
+    apiKey: process.env.REACT_APP_FIREBASE_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSENGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 const app = !firebase.app.length < 1 ? firebase.initializeApp(firebaseConfig) : firebase.app()
