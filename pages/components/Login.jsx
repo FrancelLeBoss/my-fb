@@ -2,12 +2,41 @@ import React, { useRef, useState } from 'react'
 import Image from "next/image"
 import { signIn } from 'next-auth/react'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useAuthState } from 'react-firebase-hooks/auth'
+import Home from '..';
 
 const Login = () => {
-
-    const emailRef = useRef()
-    const passwordRef = useRef()
+    const auth = getAuth();
+    const emailRef = useRef(null)
+    const passwordRef = useRef(null)
     const [passwordType, setPasswordType] = useState(true)
+    const [remember, setRemember] = useState(true)
+    const [user, loading] = useAuthState(auth)
+
+    if (loading) {
+        return <div>Loading...</div>
+    }
+
+    if (user) {
+        <div>{console.log(user)}</div>
+        return <Home session={user} />
+    }
+    const toLogin = () => {
+        createUserWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value)
+            .then((userCredential) => {
+                // Signed in 
+                //user = userCredential.user;
+                console.log({ userCredential })
+                return <Home session={userCredential.user} />
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log({ errorMessage, errorCode })
+                // ..
+            });
+    }
 
     return (
         <div className='bg-gray-50 h-screen flex justify-center items-center'>
@@ -48,16 +77,16 @@ const Login = () => {
                         </div>
                         <div className='flex items-center justify-between flex-wrap'>
                             <div className='flex items-center gap-1'>
-                                <input type="checkbox" id="remember" name="remember" checked />
-                                <label for="remember" className='text-gray-500 lg:text-sm text-xs'>Remember me</label>
+                                <input type="checkbox" id="remember" name="remember" checked={remember} onChange={() => setRemember(!remember)} />
+                                <label htmlFor="remember" className='text-gray-500 lg:text-sm text-xs'>Remember me</label>
                             </div>
-                            <div className='lg:px-2 lg:py-1 p-1 text-white bg-blue-700 hover:bg-blue-500 rounded text-xs lg:text-sm font-medium'>Login</div>
+                            <div onClick={() => { toLogin() }} className='cursor-pointer lg:px-2 lg:py-1 p-1 text-white bg-blue-700 hover:bg-blue-500 rounded text-xs lg:text-sm font-medium'>Login</div>
                         </div>
                         <div className='flex items-center justify-between flex-wrap text-xs lg:text-sm'>
                             <div className='text-blue-500 hover:underline hover:text-blue-400 cursor-pointer'>Register now</div>
                             <div className='text-gray-500 hover:underline hover:text-gray-400 cursor-pointer'>Forgot password ?</div>
                         </div>
-                        <hr class="my-10" data-content="OR" />
+                        <hr className="my-10" data-content="OR" />
                         <div onClick={signIn} className='lg:p-2 py-1 px-2 font-medium lg:text-sm text-xs bg-blue-700 hover:bg-blue-500 rounded text-white text-center cursor-pointer flex items-center gap-1'><Image
                             src="https://links.papareact.com/t4i"
                             width={20}

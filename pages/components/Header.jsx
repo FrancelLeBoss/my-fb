@@ -11,7 +11,7 @@ const Header = ({ session }) => {
             <div className='flex items-center'>
                 <Image src="https://links.papareact.com/5me"
                     width={40}
-                    height={40} alt={"Facebook logo"} />
+                    height={40} alt={"My logo"} />
                 <div className='flex ml-2 items-center rounded-full bg-gray-100'>
                     <MagnifyingGlassIcon className='h-6 text-gray-600 ' />
                     <input type="text" className='hidden md:inline-flex flex-shrink ml-2 items-center 

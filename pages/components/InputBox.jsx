@@ -7,15 +7,14 @@ import { db, storage } from '../../firebase.js'
 import firebase from 'firebase/compat/app'
 //import { useEffect } from 'react'
 
-const InputBox = ({ session }) => {
-    //const { data: session } = useSession()
+const InputBox = () => {
+    const { data: session } = useSession()
     const inputRef = useRef(null)
     const filePickerRef = useRef(null)
     const [imageToPost, setImageToPost] = useState(null)
     const sendPost = (e) => {
         // I'm using nativeEvent instead of react's event(e), i don't know why it didn't want to work
-        e.nativeEvent.preventDefault()
-        // e.preventDefault()
+        e.nativeEvent.preventDefault()// e.preventDefault()
         if (!inputRef.current.value) return;
         db.collection('posts').add({
             message: inputRef.current.value,
@@ -25,8 +24,7 @@ const InputBox = ({ session }) => {
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         }).then(doc => {
             if (imageToPost) {
-                //const uploadTask = storage.ref(`posts/${doc.id}`).putString(imageToPost, 'data_url', {contentType:'image/jpg'})
-                const uploadTask = storage.ref(`posts/${doc.id}`).putString(imageToPost, 'data_url', { contentType: 'image/jpg' })
+                const uploadTask = storage.ref(`posts/${doc.id}`).putString(imageToPost, 'data_url')
                 removeImage()
                 uploadTask.on('state_change',
                     (snapshot) => {
@@ -34,10 +32,9 @@ const InputBox = ({ session }) => {
                         console.log('Progression : ' + progress + '%');
                     },
                     error => {
-                        console.error(error)
+                        console.log(error)
                     },
                     () => {
-                        //when the upload completes
                         storage.ref(`posts`).child(doc.id).getDownloadURL().then(url => {
                             db.collection('posts').doc(doc.id).set({
                                 postImage: url
@@ -81,7 +78,7 @@ const InputBox = ({ session }) => {
                     <input type="submit" className='hidden' value={"Publish"} onClick={sendPost} />
                     {imageToPost && (<div className='flex flex-col filter hover:brightness-110
                      transition duration-150 transform hover:scale-105 cursor-pointer' onClick={removeImage}>
-                        <Image className='h-10 max-w-8 rounded-md object-contain' src={imageToPost} alt="" />
+                        <img className='h-10 max-w-8 rounded-md object-contain' src={imageToPost} alt="" />
                         <p className='text-xs text-red-500 text-center'>remove</p>
                     </div>)}
                 </form>

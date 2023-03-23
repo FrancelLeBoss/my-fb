@@ -19,7 +19,7 @@ const Posts = ({ posts }) => {
                             email={post.data().email}
                             timestamp={post.data().timestamp}
                             image={post.data().image}
-                            postImage={post.data()?.postImage || post.data().image}
+                            postImage={post.data()?.postImage}
                         />
                     })
                     :
@@ -31,7 +31,7 @@ const Posts = ({ posts }) => {
                             email={post.email}
                             timestamp={post.timestamp}
                             image={post.image}
-                            postImage={post?.postImage || post.image}
+                            postImage={post?.postImage}
                         />
                     })
             }

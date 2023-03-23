@@ -16,7 +16,7 @@ export default function Home({ session, posts }) {
       <Header session={session} />
       <main className='flex justify-between'>
         <div><Sidebar /></div>
-        <div><Feed posts={posts} session={session} /></div>
+        <div><Feed posts={posts} /></div>
         <div className='flex'><Widgets /></div>
       </main>
     </div>

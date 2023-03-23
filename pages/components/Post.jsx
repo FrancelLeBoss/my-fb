@@ -11,7 +11,11 @@ const Post = ({ name, message, email, timestamp, image, postImage }) => {
                 <div className='flex flex-col'>
                     <p className='text-sm font-bold '>{name}</p>
                     <p className='text-xs font-medium text-gray-500'>
-                        <Moment interval={30000} fromNow>{timestamp?.toDate().toLocaleString()}</Moment>
+                        {
+                            Math.abs(new Date().getTime() - timestamp?.toDate().getTime()) / (1000 * 3600 * 24) < 7 ?
+                                <Moment interval={30000} fromNow ago>{timestamp?.toDate().toLocaleString()}</Moment> :
+                                <Moment interval={30000} format="YYYY/MM/DD hh:mm">{timestamp?.toDate().toLocaleString()}</Moment>
+                        }
                     </p>
                 </div>
             </div>
